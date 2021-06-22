@@ -59,7 +59,7 @@ INSTALLED_APPS = [
     'news.apps.NewsConfig',
     'rest_framework',
     'corsheaders',  # django-cors-headers
-    'storages', #s3 연동을 위해
+    # 'storages', #s3 연동을 위해
 ]
 
 MIDDLEWARE = [
@@ -113,6 +113,7 @@ WSGI_APPLICATION = 'bitweb.wsgi.application'
 # https://docs.djangoproject.com/en/3.2/ref/settings/#databases
 
 DATABASES = {
+    #테스트 용
     # 'default': {
     #     'ENGINE': 'django.db.backends.sqlite3',
     #     'NAME': BASE_DIR / 'db.sqlite3',
