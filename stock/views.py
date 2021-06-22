@@ -67,7 +67,7 @@ class stock_information(APIView):
         # 크롤링을 해서 가져오는 경우
         stock_dict = {}
         query = request.GET.get('query')
-        print(query)
+        # print(query)
         url = 'http://www.sedaily.com/Stock/Quote?type=' + query
         try:
             html = requests.get(url)
