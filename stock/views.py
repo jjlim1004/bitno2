@@ -82,7 +82,7 @@ class stock_information(APIView):
             dl = thead.find('dl', {'class': 'thead'})
             dt = dl.find('dt')
             fieldName = dt.text
-            # print(fieldName)
+            print(fieldName)
             # print(dt)
             tbody = thead.find_all('dl', {'class', 'tbody'})
 
