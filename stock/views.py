@@ -19,8 +19,13 @@ matplotlib.use('Agg')
 import matplotlib.pyplot as plt
 from rest_framework.views import APIView
 
+
 def stock(request):
     return render(request, 'stock/kospi.html')
+
+
+def jenkins_test(request):
+    return render(request, 'stock/jenkinsTest.html')
 
 
 class stock_detail(APIView):
@@ -43,7 +48,6 @@ class stock_detail(APIView):
         start = datetime.datetime(int(date[:4]), int(date[5:7]), int(date[8:]))
 
         end = datetime.datetime(cur_year, cur_month, cur_day)
-
 
         # 야후에서 삼성전자 데이터 가져오기
         stock = pdr.get_data_yahoo(stock_code, start, end)
