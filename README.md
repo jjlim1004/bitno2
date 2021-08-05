@@ -22,4 +22,8 @@ SpringBoot, Amazon Linux, Ubuntu, CentOS, Window10 <br>
 Intelij, Pycharm, Travis CI, AWS CodeDeploy, Tomcat, Git<br>
 <hr>
 <h3>역할</h3>
-임정준 - 관리자 게시판 구현, 유효성 검사, 주식정보와 뉴스 웹 크롤링 구현, 주식 목록과 종가기준 그래프 구현, AWS CI, AWS RDS, AWS S3, AWS EC2 배포<br>
+관리자 게시판 구현, 유효성 검사, 주식정보와 뉴스 웹 크롤링 구현, 주식 목록과 종가기준 그래프 구현, AWS CI, AWS RDS, AWS S3, AWS EC2 배포<br>
+<hr>
+<h3>관리자 계정 정보</h3>
+아이디: ask23<br>
+비밀번호: tt680502
