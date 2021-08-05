@@ -13,7 +13,8 @@ TRADERS는 주식 커뮤니티로서, 주식의 종가와 차트, 뉴스에 대�
 JAVA, Python, JavaScript<br>
 <hr>
 개발 환경<br>
-SpringBoot, Amazon Linux, Ubuntu, CentOS, Window10 ##사용 라이브러리 MATPLOTLIB, Django, Django-RestFramework, Django-Cors-Header<br>
+SpringBoot, Amazon Linux, Ubuntu, CentOS, Window10 <br>
+사용 라이브러리 MATPLOTLIB, Django, Django-RestFramework, Django-Cors-Header<br>
 <hr>
 개발 도구<br>
 Intelij, Pycharm, Travis CI, AWS CodeDeploy, Tomcat, Git<br>
