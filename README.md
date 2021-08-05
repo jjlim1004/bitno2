@@ -14,7 +14,9 @@ JAVA, Python, JavaScript<br>
 <hr>
 <h3>개발 환경</h3>
 SpringBoot, Amazon Linux, Ubuntu, CentOS, Window10 <br>
-<h3>사용 라이브러리 MATPLOTLIB, Django, Django-RestFramework, Django-Cors-Header<br>
+<br>
+<h3>사용 라이브러리 
+  MATPLOTLIB, Django, Django-RestFramework, Django-Cors-Header<br>
 <hr>
 <h3>개발 도구</h3>
 Intelij, Pycharm, Travis CI, AWS CodeDeploy, Tomcat, Git<br>
