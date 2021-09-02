@@ -14,9 +14,6 @@ import sys
 import numpy as np
 from ta import add_all_ta_features
 import fastai.tabular
-# from fastai import *
-# from fastai.tabular import *
-# from fastai.tabular.all import *
 from sklearn.metrics import mean_squared_error  # Install error metrics
 from sklearn.linear_model import LinearRegression  # Install linear regression model
 from sklearn.neural_network import MLPRegressor  # Install ANN model
@@ -33,7 +30,10 @@ import cufflinks as cf
 def stock(request):
     return render(request, 'stock/kospi.html')
 
-
+""" 
+## 주식 예측을 위한 기능, 현재는 사용하지 않음, colab에서는 구동 확인, anaconda 환경에서 실행할 것
+## 사용하려면 urls.py에 추가 필요
+## path('stock_predict/', views.stock_predict.as_view(), name='stock_predict'),
 class stock_predict(APIView):
     def get(self, request, **kwargs):
         print("stock_predict")
@@ -189,12 +189,12 @@ class stock_predict(APIView):
             lr_pred = LinearRegression_fnc(x_train, y_train, x_test, y_test)
             test2, profit_dollars = CalcProfit(test, lr_pred, j)
             PlotModelResults_Plotly(train, test, lr_pred, tickerSymbol, w, h, j, 'Linear Regression')
+"""
 
-
+#주식 상세 보기를 위한 기능
 class stock_detail(APIView):
     def get(self, request, **kwargs):
-        # https://chancoding.tistory.com/116?category=846070
-        # #start를 위해 가져올 날짜 설정
+        ##start를 위해 가져올 날짜 설정
         date = request.GET.get('date')
         print(date)
         stock_code = request.GET.get('stock_code') + '.KS'
@@ -209,15 +209,15 @@ class stock_detail(APIView):
         start = datetime.datetime(int(date[:4]), int(date[5:7]), int(date[8:]))
         end = datetime.datetime(cur_year, cur_month, cur_day)
 
-        # 야후에서 삼성전자 데이터 가져오기
+        # 야후에서 데이터 가져오기
         stock = pdr.get_data_yahoo(stock_code, start, end)
-        # plot = stock.iplot(asFigure=True, title=stock_name, xTitle='날짜', yTitle='거래량')
         plot = stock.iplot(asFigure=True, title=stock_name, xTitle='날짜', yTitle='거래량')
         plot.to_json()
         stock_dict = {'stockGraph': plot.to_json()}
         return JsonResponse(stock_dict, json_dumps_params={'ensure_ascii': False})
 
 
+#주식 정보를 위한 기능
 class stock_information(APIView):
 
     def get(self, request, **kwargs):
@@ -239,8 +239,6 @@ class stock_information(APIView):
             dl = thead.find('dl', {'class': 'thead'})
             dt = dl.find('dt')
             fieldName = dt.text
-            # print(fieldName)
-            # print(dt)
             tbody = thead.find_all('dl', {'class', 'tbody'})
 
             count = 0
@@ -252,25 +250,15 @@ class stock_information(APIView):
                 price = tbody[count].find('span').get_text().replace(',', '')
                 # print(price)
                 code = dd.get('id').replace('dd_Item_', '')
-
                 # print(code)
                 stock_dict[code] = [name, fieldName, price]
                 count += 1
 
-        # data = json.dumps(stock_dict)
-
-        # sorting test
-        # sorted_dict = sorted(stock_dict.items())
-        # sorted_dict.sort(key=lambda x: x[1][1])
-        # # print(sorted_dict)
-        # stock_dict = dict(sorted_dict)
-        # print(stock_dict)
-
         # 한글이 유니코드로 출력되지 않도록 json_dumps_params 설정
-        # return JsonResponse(stock_dict, json_dumps_params={'ensure_ascii': False})
         return JsonResponse(stock_dict, json_dumps_params={'ensure_ascii': False})
 
 
+# 주식 종가 기준 그래프를 위한 기능
 class stock_graph(APIView):
     def get(self, request, **kwargs):
         date = request.GET.get('date')
@@ -286,29 +274,16 @@ class stock_graph(APIView):
 
         start = datetime.datetime(int(date[:4]), int(date[5:7]), int(date[8:]))
         end = datetime.datetime(cur_year, cur_month, cur_day)
-        # start = datetime.datetime(2021, 5, 1)
-        # end = datetime.datetime(2021, 5, 14)
         df_null = pdr.DataReader("^KS11", "yahoo", start, end)
         df = df_null.dropna()
 
         kospi_chart = df.Close.plot(style='b')
         kospi_chart.set_title("KOSPI")
-        # kospi_chart.set_ylabel("kospi")
         kospi_chart.set_xlabel("date")
         kospi_chart.set_xlim(str(start), str(end))
 
-        # print(df)
-
-        # print("Close Median", df['Close'].median())
-        # print(df['Close'].describe())
-        # print(df.corr())
-
-        # plt.show()
         plt.savefig("./stock/static/img/kospi.png")
         img_url = '/stock/static/img/kospi.png'
         data = json.dumps({'date': date, 'img_url': img_url})
-
-        # return render(request, 'stock/test.html', {'date': date, 'img_url': img_url})
-        # return HttpResponse({'date': date, 'img_url': img_url})
 
         return HttpResponse(data)
