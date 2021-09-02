@@ -37,8 +37,8 @@ class NewsView(APIView):
         newses = int(request.GET.get('news_num'))
         start_num = request.GET.get('start_num')
         print(keyword)
-        print(newses)
-        print(start_num)
+        print(newses)  # 불러올 뉴스량
+        print(start_num)  # 불러올 naver 뉴스 페이지 정보
         query = keyword
         query = query.replace(' ', '+')
         news_num = newses
@@ -74,12 +74,10 @@ class NewsView(APIView):
                 # tidx는 인덱스가 10개밖에 없어서 10개면 0으로 초기화
                 tidx += 1
                 idx += 1
-                cur_page +=1
+                cur_page += 1
                 if tidx > 9:
                     tidx = 0
                     # cur_page += 1
-
-
 
             # db에 저장하기 위한 코드
             # news = News(keyword=query, title=n.get('title'), url=n.get('href'))
