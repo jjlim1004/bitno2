@@ -40,7 +40,7 @@ ec2-13-124-213-41.ap-northeast-2.compute.amazonaws.com:8080/main
 <br>
 9.2. <br>
 -- 종가 기준 그래프를 나오지 않는 오류 원인을 확인하였습니다.<br>  
--- 오류 수정을 위해 pip 와 pandas, pandas_dataredaer 를 업데이트 했습니다.
+-- 오류 수정을 위해 pip 와 pandas, pandas_dataredaer 를 업데이트 했습니다.<br>
 -- settings.py 와 stock/urls.py 에서 현재 사용하지 않거나 불필요한 설정들을 삭제했습니다. <br>
    또 필요한 주석을 좀 더 추가했습니다. 
 
