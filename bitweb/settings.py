@@ -25,25 +25,18 @@ with open(os.path.join(BASE_DIR, 'sk', 'secret_key.txt')) as f:
 
 # SECURITY WARNING: don't run with debug turned on in production!
 # DEBUG = True
-
-# DEBUG = True
 DEBUG = False
 
 ALLOWED_HOSTS = [
-    'localhost',
-    'localhost:8000',
-    'localhost:8080',
-    '222.106.22.85',
-    '192.168.0.31',
-    '127.0.0.1',
-    'ec2-15-165-141-67.ap-northeast-2.compute.amazonaws.com',
+    'localhost:8000', #로컬 테스트용 ip
+    'localhost:8080', #로컬 테스트용 ip
+    '127.0.0.1',   # 로컬 테스트용 ip
+    'ec2-15-165-141-67.ap-northeast-2.compute.amazonaws.com', # djaonno 서버 ec2 ip
     'ec2-3-36-56-207.ap-northeast-2.compute.amazonaws.com',
-    '15.165.141.67',
-    '192.168.1.59',  # 준호씨거
-    '222.106.22.74:8000',
-    #성경씨거
-    '13.124.213.41',
-    'ec2-13-124-213-41.ap-northeast-2.compute.amazonaws.com',
+    '15.165.141.67', #aws ip
+    '222.106.22.74:8000', #팀원 로컬 실행을 위한 ip
+    '13.124.213.41',  # 팀원 로컬 실행 ip
+    'ec2-13-124-213-41.ap-northeast-2.compute.amazonaws.com', # 서비스가 실행되는 springBoot 어플리케이션 ip
 ]
 
 # Application definition
@@ -55,16 +48,16 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'stock.apps.StockConfig',
-    'news.apps.NewsConfig',
-    'rest_framework',
-    'corsheaders',  # django-cors-headers
-    # 'storages', #s3 연동을 위해
+    'stock.apps.StockConfig', #주식 정보 관련된 application 등록
+    'news.apps.NewsConfig',  # 뉴스 정보 관련한 application 등록
+    'rest_framework',  # rest API 개발에 필요한 라이브러리
+    'corsheaders',  # django-cors-headers , cors를 위해 필요한 라이브러리
+    # 'storages', #s3 연동을 하고 싶다면 추가필요
 ]
 
 MIDDLEWARE = [
     'corsheaders.middleware.CorsMiddleware',  # cors 허용
-    'django.middleware.common.CommonMiddleware',  # cors 관련
+    'django.middleware.common.CommonMiddleware',  # cors 관련되서 필요하다.
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
@@ -77,13 +70,13 @@ MIDDLEWARE = [
 
 # cors 허용 ip
 CORS_ORIGIN_WHITELIST = [
-    'http://localhost:8080',
-    'http://127.0.0.1:8080',
+    'http://localhost:8080',  # 로컬호스트로 실행할 시 필요한 host,
+    'http://127.0.0.1:8080',  # 로컬환경 테스트 시 혹시 127.0.0.1:8080 으로 실행할지도 몰라서 적어놓은 host
     'http://192.168.0.31:8080',
     'http://15.165.141.67:8080',
     'http://192.168.1.59:8080',
     'http://13.124.213.41:8080',
-    'http://ec2-13-124-213-41.ap-northeast-2.compute.amazonaws.com:8080',
+    'http://ec2-13-124-213-41.ap-northeast-2.compute.amazonaws.com:8080', #메인 서비스가 실행되는 springBoot 서버 host
 ]
 # cors credential 허용
 # CORS_ORIGIN_ALLOW_ALL = True
@@ -113,11 +106,13 @@ WSGI_APPLICATION = 'bitweb.wsgi.application'
 # https://docs.djangoproject.com/en/3.2/ref/settings/#databases
 
 DATABASES = {
-    #테스트 용
+    #테스트 용 db, 로컬 실행시 주석 해제 필요
     # 'default': {
     #     'ENGINE': 'django.db.backends.sqlite3',
     #     'NAME': BASE_DIR / 'db.sqlite3',
     # }
+
+    #aws rds 사용을 위한 설정, 로컬에서 테스트 시 주석처리가 필요
     'default': {
         'ENGINE': 'django.db.backends.mysql',
         'HOST': 'django-rds.cyxp7lkxqojp.ap-northeast-2.rds.amazonaws.com',
@@ -177,31 +172,7 @@ MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
 # Default primary key field type
-# https://docs.djangoproject.com/en/3.2/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
-# LOGGING = {
-#     'version': 1,
-#     'disable_existing_loggers': False,
-#     'formatters': {
-#         'verbose': {
-#             'format': "[%(asctime)s] %(levelname)s [%(name)s:%(lineno)s] %(message)s",
-#             'datefmt': "%d/%b/%Y %H:%M:%S"
-#         },
-#     },
-#     'handlers': {
-#         'file': {
-#             'level': 'DEBUG',
-#             'class': 'logging.FileHandler',
-#             'filename': os.path.join(BASE_DIR, 'logs', 'bitweb.log'),
-#             'formatter': 'verbose'
-#         },
-#     },
-#     'loggers': {
-#         'mylogger': {
-#             'handlers': ['file'],
-#             'level': 'DEBUG',
-#         },
-#     }
-# }
+
