@@ -31,7 +31,7 @@ ec2-13-124-213-41.ap-northeast-2.compute.amazonaws.com:8080/main
 아이디: ask23<br>
 비밀번호: tt680502
 
-<br>
+<hr>
 <h3>수정 및 개선 내용</h3>
 8.26 
 게시판 글쓰기 기능이 안되는 것을 해결했습니다. 
