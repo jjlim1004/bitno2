@@ -38,9 +38,9 @@ ec2-13-124-213-41.ap-northeast-2.compute.amazonaws.com:8080/main
 재배포를 한 결과 정상적으로 작동하였습니다. <br>
 --종가 기준 그래프가 나오지 않는걸 확인했습니다. <br>
 <br>
-9.2. <br>
--- 종가 기준 그래프를 나오지 않는 오류를 확인하였습니다.<br>  
--- 오류 수정을 위해 pip 와 pandas, pandas_dataredaer 를 업데이트 했습니다.<br>
+9.2. <br>  
+-- 종가 기준 그래프 오류 수정을 위해 pip 와 pandas, pandas_dataredaer 를 업데이트 했습니다.<br>
+-- 배포 도중 오류가 발생했습니다. 원인을 확인하고 있습니다.
 -- settings.py 와 stock/urls.py 에서 현재 사용하지 않거나 불필요한 설정들을 삭제했습니다. <br>
    또 필요한 주석을 추가하고 필요없는 주석은 삭제했습니다.<br>
 <br>
